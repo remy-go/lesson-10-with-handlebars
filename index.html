@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tinklaraščiai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script type="text/javascript" src="handlebars-v4.0.5.js"></script>
+  </head>
+  <body>
+
+    <template id="registration-form-template">
+      <form class="login form-horizontal form-group" onsubmit="return false">
+        <legend><h3>Registracija</h3></legend>
+        <label for="username" class="form-control-label">Vardas:</label>
+        <input type="text" class="username form-control" name="username"><br>
+        <label for="password" class="form-control-label">Slaptažodis:</label>
+        <input type="password" class="password form-control" name="password">
+        <button type="submit" class="submit btn btn-primary">Registruotis</button>
+      </form>
+    </template>
+
+    <template id="login-form-template">
+      <form class="login form-horizontal form-group" onsubmit="return false">
+        <legend><h3>Prisijungimas</h3></legend>
+        <label for="username" class="form-control-label">Vardas:</label>
+        <input type="text" class="username form-control" name="username"><br>
+        <label for="password" class="form-control-label">Slaptažodis:</label>
+        <input type="password" class="password form-control" name="password">
+        <button type="submit" class="submit btn btn-primary">Prisijungti</button>
+      </form>
+    </template>
+
+    <template id="comment-form-template">
+      <form class="publish-post form-group" onsubmit="return false">
+        <legend><h4>Naujas komentaras</h4></legend>
+        <textarea class="text form-control" rows="8"></textarea>
+        <button type="submit" class="submit btn btn-primary">Skelbti</button>
+      </form>
+    </template>
+
+    <template id="recent-posts-template">
+      <h3>Naujausi Įrašai</h3>
+      {{#each recentPosts}}
+        <div id={{this.id}} class="recent-post">
+          <img src="images/user-icon.png">
+          <div class="date">
+            {{printDate this.date}}
+          </div>
+          <div>
+            <span class="author link btn-link">{{this.author}}</span>
+          </div>
+          <div>
+            <span class="title link btn-link">{{this.title}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </template>
+
+    <template id="user-list-template">
+      <h3>Tinklaraščių autoriai</h3>
+      {{#each users}}
+      <div id="user" class="user-list-entry">
+        <img src="images/user-icon.png">
+        <div>
+          <span class="link btn-link author">{{this.name}}</span>
+        </div>
+      </div>
+      {{/each}}
+    </template>
+
+    <template id="posts-of-user-template">
+      <h3>Autoriaus <em>{{user}}</em> Įrašai</h3>
+      <form class="display-none publish-post form-group" onsubmit="return false">
+        <legend><h4>Naujas įrašas</h4></legend>
+        <label for="username" class="form-control-label">Antraštė: </label>
+        <input type="text" id="title" class="form-control" name="title"><br>
+        <textarea class="text" rows="8" class="form-control" name="text"></textarea>
+        <button type="submit" class="submit btn btn-primary">Skelbti</button>
+      </form>
+      {{#each posts}}
+        <div id="{{this.id}}" class="post">
+          <img src="images/user-icon.png">
+          <div class="date"> {{printDate this.date}} </div>
+          <div class="user"> {{this.author}} </div>
+          <div class="title"> {{this.title}} </div>
+          <div class="post-content"> {{this.content}} </div>
+          <div class="post-comment-link">
+            <span class="more-less link btn-link comment-post"> Komentuoti </span>
+          </div>
+          <div></div>
+          <div class="comments">
+            {{#each comments}}
+              <div class="comment">
+                <div>
+                  <span class="date">{{printDate this.date}}</span>
+                  <span class="user">{{this.author}}</span>
+                </div>
+                <div class="comment-content"> {{this.content}} </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/each}}
+    </template>
+
+    <div id="page">
+      <header>
+        <h1></h1>
+      </header>
+        <nav> 
+          <div class="btn btn-primary active nav-button recent-posts pressed">Naujausi</div>
+          <div class="btn btn-primary nav-button users">Vartotojai</div>
+          <div class="btn btn-primary nav-button login">Prisijungti</div>
+          <div class="btn btn-primary nav-button logout removed">Atsijungti</div>
+          <div class="btn btn-primary nav-button registration">Registruotis</div>
+        </nav>
+
+        <div id="content"></div>
+
+      <footer>
+        <div>2016</div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/initial-data.js"></script>
+    <script type="text/javascript" src="js/blog-data.js"></script>
+    <script type="text/javascript" src="js/user-state.js"></script>
+    <script type="text/javascript" src="js/nav-button-style.js"></script>
+    <script type="text/javascript" src="js/content-renderer.js"></script>
+    <script type="text/javascript" src="js/login-renderer.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+  </body>
+</html>

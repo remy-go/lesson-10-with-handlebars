@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Testing Functions</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+  <script src="../handlebars-v4.0.5.js"></script>
+</head>
+
+<template id="user-list-template">
+  <h3>Tinklaraščių autoriai</h3>
+  {{#each users}}
+  <div id="user" class="user-list-entry">
+    <img src="images/user-icon.png">
+    <div>
+      <span class="link btn-link author">{{this.name}}</span>
+    </div>
+  </div>
+  {{/each}}
+</template>
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="tests.js"></script>
+</body>
+
+</html>
