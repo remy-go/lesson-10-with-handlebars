@@ -25,7 +25,7 @@ var RenderContentModule = (function() {
     for(let i = 0; i < 3; i++) {
       div.children[i + 1].children[2].addEventListener('click', function() { renderPostsOfUser(recentPosts[i].author); });
       div.children[i + 1].children[3].addEventListener('click', function() { renderPostsOfUser(recentPosts[i].author);
-        document.getElementById(div.children[i].id).scrollIntoView(true); });
+        document.getElementById(div.children[i + 1].id).scrollIntoView(true); });
     }
     content.innerHTML = '';
     content.appendChild(div);
