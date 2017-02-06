@@ -6,8 +6,9 @@ var NavButtonStyleModule = (function() {
       logoutButton = document.querySelector('.logout');
 
   function pressButton(button) {
-    for(var i = 0; i < navButtons.length; i++)
-    { navButtons[i].classList.remove('active'); } 
+    for (var i = 0; i < navButtons.length; i++) {
+      navButtons[i].classList.remove('active');
+    } 
     button.classList.add('active');
   }
 
@@ -16,26 +17,21 @@ var NavButtonStyleModule = (function() {
   }
 
   function unPressAllButtons() {
-    for(var i = 0; i < navButtons.length; i++)
+    for (var i = 0; i < navButtons.length; i++)
     { navButtons[i].classList.remove('active'); } 
   }
 
-  function logoutSwitchButton() {
+  function toggleButtonsOnLoginLogout() {
     logoutButton.classList.toggle('removed');
     loginButton.classList.toggle('removed');
     registrationButton.classList.toggle('removed');
-  }
-
-  function loginSwitchButton() {
-    logoutSwitchButton();
   }
 
   return {
     pressButton: pressButton,
     unPressButton: unPressButton,
     unPressAllButtons: unPressAllButtons,
-    logoutSwitchButton: logoutSwitchButton,
-    loginSwitchButton: loginSwitchButton
+    toggleButtonsOnLoginLogout: toggleButtonsOnLoginLogout
   };
 
 })();

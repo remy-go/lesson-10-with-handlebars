@@ -41,6 +41,19 @@ var BlogDataModule = (function() {
     Storage.updatePosts(posts);
   }
 
+  function removeComment(postId, commentId) {
+    var posts = Storage.getPosts(),
+        post = posts.find(function(post) {
+        return (post.id === postId);
+      });
+    var comment = posts.comments.find(function(comment) {
+      return (comment.id === commentId);
+    });
+    var index = posts.comments.indexOf(comment);
+    post.comments.splice(index, 1);
+    Storage.updatePosts(posts);
+  }
+
   return {
     addUser: addUser,
     removeUser: removeUser,

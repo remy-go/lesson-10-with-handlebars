@@ -6,12 +6,13 @@ var RenderLoginRegisterModule = (function() {
       RenderContent = RenderContentModule,
       UserState = UserStateModule,
       BlogData = BlogDataModule,
-      Storage = StorageModule;
+      Storage = StorageModule,
       loginFormTemplate = Handlebars.compile(document.getElementById('login-form-template').innerHTML),
       registrationFormTemplate = Handlebars.compile(document.getElementById('registration-form-template').innerHTML);
 
   function renderRegistrationForm() {
-    var registrationParent = document.createElement('div'), form;
+    var registrationParent = document.createElement('div'),
+        form;
     registrationParent.innerHTML = registrationFormTemplate();
     form = registrationParent.children[0];
     form.addEventListener('submit', function() { submitRegistrationForm(form); });
@@ -31,7 +32,7 @@ var RenderLoginRegisterModule = (function() {
       UserState.register(user, password);
       content.innerHTML = '';
       RenderContent.renderPostsOfUser(user);
-      NavButtonStyle.loginSwitchButton();
+      NavButtonStyle.toggleButtonsOnLoginLogout();
       NavButtonStyle.unPressButton(registrationButton);
     }
   }
@@ -53,7 +54,7 @@ var RenderLoginRegisterModule = (function() {
       UserState.login(user, password);
       content.innerHTML = '';
       RenderContent.renderPostsOfUser(user);
-      NavButtonStyle.loginSwitchButton();
+      NavButtonStyle.toggleButtonsOnLoginLogout();
     } else {
       var message = document.createElement('div');
       message.innerHTML = 'Neteisingas prisijungimas!';
